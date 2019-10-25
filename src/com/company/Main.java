@@ -6,6 +6,8 @@ public class Main {
         String action = test();
         //master代码1
         //master代码2
+        //feature代码1
+        //feature代码2
     }
 
     static String test(){
