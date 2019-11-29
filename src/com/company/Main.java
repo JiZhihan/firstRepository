@@ -7,7 +7,7 @@ public class Main {
         //feature代码1
         //feature代码2
         //feature新加代码1
-        //feature新加BUG代码2
+        //feature新加BUG代码2（已修改）
     }
 
     static String test(){
