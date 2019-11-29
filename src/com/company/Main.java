@@ -6,6 +6,7 @@ public class Main {
         String action = test();
         //feature代码1
         //feature代码2
+        //feature新加代码1
     }
 
     static String test(){
