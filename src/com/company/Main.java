@@ -5,10 +5,11 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[]{3, 1, 2, 0};
-       // System.out.print(Arrays.toString(selectSort(a)));
+        int[] a = new int[]{7, 9, 3, 1, 2, 0};
+        // System.out.print(Arrays.toString(selectSort(a)));
         // System.out.print(Arrays.toString(bubbleSort(a)));
-        quickSort(a,0,a.length-1);
+        //quickSort(a,0,a.length-1);
+        mergeSort(a);
         System.out.print(Arrays.toString(a));
     }
 
@@ -34,21 +35,22 @@ public class Main {
     private static int[] bubbleSort(int[] a) {
         int n = a.length;
         int temp;
-        for (int i = 0; i < n - 1; i++){
-            for (int j = 0; j < n-i-1; j++){
-                if (a[j]>a[j+1]){
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (a[j] > a[j + 1]) {
                     temp = a[j];
-                    a[j] = a[j+1];
-                    a[j+1] = temp;
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                 }
             }
         }
         return a;
     }
+
     /**
      * 快速排序算法
      */
-    private  static void quickSort(int[] list, int left, int right) {
+    private static void quickSort(int[] list, int left, int right) {
         if (left < right) {
             // 分割数组，找到分割点
             int point = partition(list, left, right);
@@ -93,6 +95,44 @@ public class Main {
             temp = list[left];
             list[left] = list[right];
             list[right] = temp;
+        }
+    }
+
+    //归并排序
+    private static void mergeSort(int[] arr) {
+        sort(arr, 0, arr.length - 1);
+    }
+
+    private static void sort(int[] arr, int L, int R) {
+        if (L == R) {
+            return;
+        }
+        int mid = L + ((R - L) >> 1);
+        sort(arr, L, mid);
+        sort(arr, mid + 1, R);
+        merge(arr, L, mid, R);
+    }
+
+    private static void merge(int[] arr, int L, int mid, int R) {
+        int[] temp = new int[R - L + 1];
+        int i = 0;
+        int p1 = L;
+        int p2 = mid + 1;
+        // 比较左右两部分的元素，哪个小，把那个元素填入temp中
+        while (p1 <= mid && p2 <= R) {
+            temp[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        // 上面的循环退出后，把剩余的元素依次填入到temp中
+        // 以下两个while只有一个会执行
+        while (p1 <= mid) {
+            temp[i++] = arr[p1++];
+        }
+        while (p2 <= R) {
+            temp[i++] = arr[p2++];
+        }
+        // 把最终的排序的结果复制给原数组
+        for (i = 0; i < temp.length; i++) {
+            arr[L + i] = temp[i];
         }
     }
 }
