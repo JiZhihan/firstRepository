@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[]{7, 9, 3, 1, 2, 0};
-        // System.out.print(Arrays.toString(selectSort(a)));
-        // System.out.print(Arrays.toString(bubbleSort(a)));
-        //quickSort(a,0,a.length-1);
-        mergeSort(a);
+        int[] a = new int[]{7, 9, 3, 1, 2,0};
+//         System.out.print(Arrays.toString(selectSort(a)));
+//         System.out.print(Arrays.toString(bubbleSort(a)));
+        quickSort(a, 0, a.length - 1);
+//        mergeSort(a);
         System.out.print(Arrays.toString(a));
     }
 
@@ -19,7 +19,7 @@ public class Main {
             int temp = a[i];
             int flag = i;
             for (int j = i; j < n; j++) {
-                if (a[j] <= temp) {
+                if (a[j] < temp) {
                     temp = a[j];
                     flag = j;
                 }
@@ -56,7 +56,7 @@ public class Main {
             int point = partition(list, left, right);
 
             // 递归调用，对左子数组进行快速排序
-            quickSort(list, left, point - 1);
+            quickSort(list, left, point -1 );
             // 递归调用，对右子数组进行快速排序
             quickSort(list, point + 1, right);
         }
@@ -73,15 +73,15 @@ public class Main {
             while (left < right && list[right] >= first) {
                 right--;
             }
-            // 交换
-            swap(list, left, right);
 
-            while (left < right && list[left] <= first) {
+            while (left < right &&  list[left] <= first) {
                 left++;
             }
             // 交换
             swap(list, left, right);
         }
+        // 交换
+        swap(list, 0, left);
         // 返回分割点所在的位置
         return left;
     }
