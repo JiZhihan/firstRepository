@@ -119,7 +119,7 @@ public class Main {
         int i = 0;
         int p1 = L;
         int p2 = mid + 1;
-        // 比较左右两部分的元素，哪个小，把那个元素填入temp中
+        // 比较左右两部分的元素，哪个小，把那个元素填入temp1中
         while (p1 <= mid && p2 <= R) {
             temp[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
